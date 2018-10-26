@@ -8,7 +8,7 @@ public enum Token_Class
 {
     Else, If, ElseIf, Read, Then, Until, Write, EqualOp, LessThanOp, 
     GreaterThanOp, NotEqualOp, PlusOp, MinusOp, MultiplyOp, DivideOp,
-    Idenifier, Constant, String, Float, Integer ,And ,Or, Endl
+    Idenifier, Constant, String, Float, Integer ,And ,Or, Endl ,Error
 }
 
 namespace JASON_Compiler
@@ -24,6 +24,7 @@ namespace JASON_Compiler
     public class Scanner
     {
         public List<Token> Tokens = new List<Token>();
+        public List<Token> Errors = new List<Token>();
         Dictionary<string, Token_Class> ReservedWords = new Dictionary<string, Token_Class>();
         Dictionary<string, Token_Class> Operators = new Dictionary<string, Token_Class>();
 
@@ -98,6 +99,7 @@ namespace JASON_Compiler
                 else if (CurrentChar >= '0' && CurrentChar <= '9')
                 {
                     CurrentLexeme = "";
+                    bool point = false;
 
                     while (true)
                     {
@@ -106,7 +108,23 @@ namespace JASON_Compiler
                         {
                             CurrentLexeme += CurrentChar;
                             i++;
-                            if (i < SourceCode.Length) CurrentChar = SourceCode[i];
+                            if (CurrentChar == '.')
+                            {
+                                if (!point)
+                                {
+                                    point = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("daa error maynfa3sh aktar mn 1 point");
+                                    Token error=new Token();
+                                    error.lex= CurrentLexeme;
+                                    error.token_type=Token_Class.Error;
+                                    Errors.Add(error);
+                                    break ;
+                                }
+                            }
+                             if (i < SourceCode.Length) CurrentChar = SourceCode[i];
                             else break;
                         }
                         else
@@ -121,6 +139,11 @@ namespace JASON_Compiler
                             else
                             {
                                 Console.WriteLine("ERRROR!!!!!!!!!!");
+                                Token error = new Token();
+                                error.lex = CurrentLexeme;
+                                error.token_type = Token_Class.Error;
+                                Errors.Add(error);
+                        
                             }
                             break;
                         }
@@ -188,6 +211,11 @@ namespace JASON_Compiler
                 else
                 {
                     Console.WriteLine("ERROR!!!!!!!!!!!!!!!!!");
+                    Token error = new Token();
+                    error.lex = CurrentLexeme;
+                    error.token_type = Token_Class.Error;
+                    Errors.Add(error);
+                    
                 }
             }
             
