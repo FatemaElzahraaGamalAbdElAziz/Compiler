@@ -139,7 +139,7 @@ namespace JASON_Compiler
                         CurrentLexeme+=CurrentChar;
                         CurrentChar = SourceCode[i];
                     }
-                    MessageBox.Show("ana tl3t");
+                    //MessageBox.Show("ana tl3t");
                     if ( cntr < 2 &&  flag )
                     {
                         FindTokenClass(CurrentLexeme);
