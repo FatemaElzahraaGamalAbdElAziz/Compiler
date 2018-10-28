@@ -137,10 +137,9 @@ namespace JASON_Compiler
                         {
                             break;
                         }
-                     
                         CurrentChar = SourceCode[i];
                     }
-                    //MessageBox.Show("ana tl3t");
+                   // MessageBox.Show("ana tl3t");
                     if ( cntr < 2 &&  flag )
                     {
                         FindTokenClass(CurrentLexeme);
@@ -158,11 +157,14 @@ namespace JASON_Compiler
                 {
                     CurrentLexeme = "";
                     CurrentLexeme += CurrentChar;
-                    CurrentLexeme += SourceCode[i + 1];
+ 
 
-                    i += 2;
+                    i += 1;
                     while (true)
                     {
+                        CurrentChar = SourceCode[i];
+                        CurrentLexeme += CurrentChar;
+                        i++;
                         if (i == SourceCode.Length)
                         {
                           ////  Token error = new Token();
@@ -172,18 +174,17 @@ namespace JASON_Compiler
                             Errors.Error_List.Add(CurrentLexeme);
                             break;
                         }
-                        if (i + 1 != SourceCode.Length - 1 && SourceCode[i] == '*' && SourceCode[i + 1] == '/') 
+                        if (i + 1 < SourceCode.Length  && SourceCode[i] == '*' && SourceCode[i + 1] == '/') 
                         {
                             i++;
                             CurrentLexeme += '*';
                             CurrentLexeme += '/';
                             FindTokenClass(CurrentLexeme);
                             CurrentLexeme = "";
+                          //  MessageBox.Show("bo2loz");
                             break;
                         }
-                        CurrentChar = SourceCode[i];
-                        CurrentLexeme += CurrentChar;
-                        i++;
+                        
                     }
 
                 }
