@@ -132,11 +132,12 @@ namespace JASON_Compiler
                         }
 
                         i++;
+                        CurrentLexeme+=CurrentChar;
                         if (i >= SourceCode.Length)
                         {
                             break;
                         }
-                        CurrentLexeme+=CurrentChar;
+                     
                         CurrentChar = SourceCode[i];
                     }
                     //MessageBox.Show("ana tl3t");
