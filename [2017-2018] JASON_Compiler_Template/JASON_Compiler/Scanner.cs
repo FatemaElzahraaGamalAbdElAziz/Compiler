@@ -256,7 +256,9 @@ namespace JASON_Compiler
                     //error.lex = CurrentLexeme;
                     //error.token_type = Token_Class.Unrecognized_Token;
                     //Errors.Add(error);
+                    CurrentLexeme += CurrentChar;
                     Errors.Error_List.Add(CurrentLexeme);
+                    CurrentLexeme ="";
 
                 }
             }
