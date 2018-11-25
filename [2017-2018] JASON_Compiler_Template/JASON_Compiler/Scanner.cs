@@ -11,7 +11,7 @@ public enum Token_Class
     GreaterThanOp, NotEqualOp, PlusOp, MinusOp, MultiplyOp, DivideOp,
     Idenifier, Constant, String, Float, Integer, And, Or, Endl
         , LeftParanthesis, RightParanthesis, 
-    Comment, LeftBrace, RightBrace, SemiColon, Assign, Comma, Return
+    Comment, LeftBrace, RightBrace, SemiColon, Assign, Comma, Return, Repeat
 }
 
 namespace JASON_Compiler
@@ -45,6 +45,7 @@ namespace JASON_Compiler
             ReservedWords.Add("string", Token_Class.String);
             ReservedWords.Add("endl", Token_Class.Endl);
             ReservedWords.Add("return", Token_Class.Return);
+            ReservedWords.Add("repeat", Token_Class.Repeat);
 
 
 
